@@ -1,0 +1,17 @@
+version: '3'
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins
+    volumes:
+      - jenkins:/var/jenkins_home
+      - ./centos7/remote-key-folder:/tmp/remote-folder
+    ports: 
+      - '8080:8080'
+  remote_host:
+    container_name: remote-host
+    image: remote-host
+    build:
+      context: centos7
+volumes:
+  jenkins:
